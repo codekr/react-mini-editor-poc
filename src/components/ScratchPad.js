@@ -1,22 +1,13 @@
 import React from "react";
+import "./scratch-pad.css";
+import Button from "../common/Button";
+import classNames from "classnames";
 
 // Initial state of the component
 const initialState = {
   past: [],
   present: "",
   future: [],
-};
-
-// Button stateless component
-const Button = ({ label, ...props }) => {
-  return (
-    <button
-      className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-1 px-4 mx-1 sm:rounded-l"
-      {...props}
-    >
-      {label}
-    </button>
-  );
 };
 
 // Component Reducer
@@ -51,7 +42,7 @@ const undoableReducer = (state, { type, payload }) => {
   }
 };
 
-const ScratchPad = (props) => {
+const ScratchPad = ({ onClose, visible, ...props }) => {
   const refTextArea = React.useRef();
   const [state, dispatch] = React.useReducer(undoableReducer, initialState);
   const canUndo = React.useMemo(() => !state.past.length, [state]);
@@ -116,14 +107,20 @@ const ScratchPad = (props) => {
   };
 
   // Templates of the components
+  const btnClass = classNames({
+    "scratch-pad": true,
+    open: visible,
+  });
+  console.log("hide visible", btnClass);
   return (
-    <React.Fragment>
+    <div className={btnClass}>
       <div className="inline-flex my-4 justify-center">
         <Button label="Copy" onClick={onCopy} />
         <Button label="Paste" onClick={onPaste} />
         <Button label="Cut" onClick={onCut} />
         <Button label="Undo" onClick={onUndo} disabled={canUndo} />
         <Button label="Redo" onClick={onRedo} disabled={canRedo} />
+        <Button label="X" onClick={() => onClose()} />
       </div>
       <textarea
         ref={refTextArea}
@@ -132,7 +129,7 @@ const ScratchPad = (props) => {
         value={state.present}
         onChange={onChange}
       ></textarea>
-    </React.Fragment>
+    </div>
   );
 };
 
