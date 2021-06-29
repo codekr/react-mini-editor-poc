@@ -7,16 +7,6 @@
   left: 50px;
 }
 
-.scratch-pad > .header-body {
-  display: flex;
-  justify-content: space-between;
-}
-
-.scratch-pad > .header-body.close-btn {
-  cursor: pointer;
-  margin-right: 3px;
-}
-
 .scratch-pad.open {
   display: block;
 }

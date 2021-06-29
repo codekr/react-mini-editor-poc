@@ -1,7 +1,7 @@
 import React from "react";
 import ScratchPad from "./components/ScratchPad";
-import "./App.css";
 import Button from "./common/Button";
+import "./App.css";
 
 function App() {
   const [showPad, setShowPad] = React.useState(false);

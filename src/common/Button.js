@@ -1,11 +1,13 @@
 import React from "react";
+import classNames from "classnames";
+import "./button.css";
 
 const Button = ({ label, ...props }) => {
+  const btnClass = classNames({
+    button: true,
+  });
   return (
-    <button
-      className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-1 px-4 mx-1 sm:rounded-l"
-      {...props}
-    >
+    <button className={btnClass} {...props}>
       {label}
     </button>
   );
