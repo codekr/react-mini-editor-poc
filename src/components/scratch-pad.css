@@ -1,8 +1,6 @@
 .scratch-pad {
   display: none;
-  position: absolute;
   z-index: 9;
-  padding: 15px;
   top: 100px;
   left: 50px;
 }
